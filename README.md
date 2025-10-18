@@ -58,6 +58,7 @@ Agent setup
 
 Calculator tool
 
+Weather Tol
 Template buttons
 
 Streamed chat logic
