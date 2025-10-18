@@ -1,0 +1,198 @@
+/* ====== GLOBAL CHAT UI REFINEMENT ====== */
+
+/* Set a subtle background for the whole app */
+body {
+  background: #c3ccf1a4 !important; /* Tailwind gray-100 */
+  font-family: "Inter", system-ui, sans-serif !important;
+}
+
+/* Remove excess borders and make it cleaner */
+#root {
+  background: transparent !important;
+}
+/* ====== CHAT INPUT AREA (Bottom Bar) ====== */      
+textarea#chat-input::placeholder {
+  color: #1148a7 !important;
+  font-style: italic !important;
+}
+.logo {
+  width: 50px;
+  height: 50px; /* keeps aspect ratio */
+  margin-bottom: 1px;
+}
+
+textarea#chat-input:focus {
+  background: #ffffff !important;
+  border-color: #01090d !important;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2) !important;
+  outline: none !important;
+}
+
+/* ====== SEND BUTTON ====== */
+button[data-testid="send-button"] {
+  background: linear-gradient(135deg, #0ea5e9, #06b6d4) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 50% !important;
+  width: 46px !important;
+  height: 46px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 10px rgba(14, 165, 233, 0.3) !important;
+  transition: all 0.25s ease-in-out !important;
+}
+
+button[data-testid="send-button"]:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 12px rgba(14, 165, 233, 0.4) !important;
+  background: linear-gradient(135deg, #06b6d4, #0ea5e9) !important;
+}
+
+button[data-testid="send-button"]:active {
+  transform: scale(0.95);
+}
+
+/* ====== SCROLLBAR INSIDE TEXTAREA ====== */
+textarea#chat-input::-webkit-scrollbar {
+  width: 6px;
+}
+
+textarea#chat-input::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 4px;
+}
+ /* ===== Assistant Message Styling ===== */
+
+/* Overall message wrapper */
+.ai-message {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  padding: 12px 16px !important;
+  margin: 6px 0 !important;
+  width: 100% !important;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Avatar */
+.ai-message img {
+  width: 18px !important;
+  height: 18px !important;
+  border-radius: 50% !important;
+  border: 2px solid #e0f2fe !important;
+  box-shadow: 0 2px 4px rgba(14, 165, 233, 0.2) !important;
+  background-color: #f0f9ff !important;
+}
+
+/* Assistant Name + Time Row */
+.ai-message header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-bottom: 4px !important;
+}
+
+.ai-message header .name {
+  font-weight: 600 !important;
+  color: #0f172a !important;
+  font-size: 15px !important;
+}
+
+.ai-message header .time {
+  font-size: 12px !important;
+  color: #94a3b8 !important;
+}
+
+
+/* Chat bubble */
+.ai-message .message-content {
+  background: #ffffff !important;
+  color: #1e293b !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 16px !important;
+  padding: 14px 18px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  max-width: 90% !important;
+  transition: all 0.25s ease-in-out;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+}
+
+/* Hover lift effect */
+.ai-message .message-content:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.15) !important;
+}
+
+/* Links inside message */
+.ai-message .message-content a {
+  color: #0ea5e9 !important;
+  text-decoration: underline !important;
+  font-weight: 500 !important;
+}
+
+.ai-message .message-content a:hover {
+  color: #0284c7 !important;
+}
+
+/* VERY SPECIFIC debug CSS - use only while testing */
+#header #readme-button,
+#readme-button {
+  background-color: #2563eb !important; /* blue */
+  color: #fff !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  padding: 8px 12px !important;
+  height: auto !important;
+  min-width: 72px !important;
+}
+
+/* Example for header background */
+#header {
+  background: #0f172a !important;
+  border-bottom: 1px solid rgba(255,255,255,0.04) !important;
+}
+
+/* Make sure svg icons inside header don't override color */
+#header button svg {
+  color: inherit !important;
+  fill: currentColor !important;
+}
+
+/* Code blocks inside messages */
+.ai-message pre,
+.ai-message code {
+  background: #f8fafc !important;
+  padding: 8px 10px !important;
+  border-radius: 8px !important;
+  font-family: "JetBrains Mono", monospace !important;
+  font-size: 14px !important;
+  overflow-x: auto !important;
+}
+
+/* Dark mode support */
+[data-theme="dark"] .ai-message .message-content {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+  border-color: #334155 !important;
+}
+
+[data-theme="dark"] .ai-message img {
+  border-color: #334155 !important;
+  background-color: #0f172a !important;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
